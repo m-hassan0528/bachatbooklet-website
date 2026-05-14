@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BookOrderController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryBrandController;
@@ -29,6 +30,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', function () {
     return view('frontend.about-us');
 })->name('about');
+
+Route::get('/blogs', function () {
+    return view('frontend.blogs');
+})->name('blogs');
+
 
 Route::get('/contact', function () {
     return view('frontend.contact');
@@ -76,6 +82,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
+Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
+
+
+
 // Brand management routes (admin only)
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('brands', BrandController::class);
@@ -89,6 +100,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('book-orders', BookOrderController::class)->only(['index', 'edit', 'update', 'destroy']);
     // category management
     Route::resource('categories', CategoryController::class);
+
+
+    // Blog Management
+        Route::get('admin-blogs',          [BlogController::class, 'dashboardIndex'])->name('admin-blogs.index');
+        Route::get('admin-blogs/create',   [BlogController::class, 'create'])->name('admin-blogs.create');
+        Route::post('admin-blogs',         [BlogController::class, 'store'])->name('admin-blogs.store');
+        Route::get('admin-blogs/{blog}/edit',    [BlogController::class, 'edit'])->name('admin-blogs.edit');
+        Route::put('admin-blogs/{blog}',         [BlogController::class, 'update'])->name('admin-blogs.update');
+        Route::delete('admin-blogs/{blog}',      [BlogController::class, 'destroy'])->name('admin-blogs.destroy');
+
 });
 
 // Public routes for QR code scanning (no authentication required)

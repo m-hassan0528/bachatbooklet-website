@@ -17,6 +17,7 @@
                     <h4 class="font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="{{ route('about') }}" class="hover:text-white transition">About Us</a></li>
+                         <li><a href="{{ route('blogs') }}" class="hover:text-white transition">Blogs</a></li>
                         <li><a href="#how-it-works" class="hover:text-white transition">How It Works</a></li>
                        <li>
     <a href="{{ route('category') }}" class="hover:text-white transition">
