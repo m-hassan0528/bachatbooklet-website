@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Redirect http & https to https://domain.com/public
+RewriteCond %{REQUEST_URI} ^/public(/.*)?$ [NC]
+RewriteRule ^public/?(.*)$ https://bachatbooklet.com/$1 [R=301,L]
