@@ -34,11 +34,14 @@
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
                         {{ __('Categories') }}
                     </x-nav-link>
-                    <x-nav-link
-                        :href="route('admin-blogs.index')"
-                        :active="request()->routeIs('admin-blogs.*')"
-                    >
+                    <x-nav-link :href="route('admin-blogs.index')" :active="request()->routeIs('admin-blogs.*')">
                         {{ __('Blogs') }}
+                    </x-nav-link>
+                    <x-nav-link
+                        :href="route('blog-categories.index')"
+                        :active="request()->routeIs('blog-categories.*')"
+                    >
+                        {{ __('Blog Categories') }}
                     </x-nav-link>
                     @endif
                 </div>
